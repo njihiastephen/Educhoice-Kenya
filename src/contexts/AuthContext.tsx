@@ -77,8 +77,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         });
       } else {
         toast({
-          title: "Account Created",
-          description: "Please log in with your credentials.",
+          title: "Account Created Successfully",
+          description: "You can now log in with your credentials.",
         });
       }
 
