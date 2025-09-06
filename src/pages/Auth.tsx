@@ -16,6 +16,7 @@ const Auth = () => {
   const [fullName, setFullName] = useState('');
   const [role, setRole] = useState('student');
   const [loading, setLoading] = useState(false);
+  const [showEmailConfirmation, setShowEmailConfirmation] = useState(false);
   
   const { signIn, signUp, user, session } = useAuth();
   const navigate = useNavigate();
@@ -46,10 +47,8 @@ const Auth = () => {
       } else {
         const { error } = await signUp(email, password, fullName, role);
         if (!error) {
-          setIsLogin(true); // Switch to login after successful signup
-          setEmail('');
-          setPassword('');
-          setFullName('');
+          setShowEmailConfirmation(true);
+          // Keep the form filled for easy re-entry after confirmation
         }
       }
     } catch (error) {
@@ -96,7 +95,30 @@ const Auth = () => {
           </CardHeader>
           
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            {showEmailConfirmation && !isLogin ? (
+              <div className="text-center space-y-4">
+                <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                  <h3 className="font-semibold text-primary mb-2">Check Your Email!</h3>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    We've sent a confirmation link to <span className="font-medium">{email}</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground">
+                    Click the link in your email to activate your account, then return here to log in.
+                  </p>
+                </div>
+                <Button 
+                  onClick={() => {
+                    setShowEmailConfirmation(false);
+                    setIsLogin(true);
+                  }}
+                  variant="outline"
+                  className="w-full"
+                >
+                  Go to Login
+                </Button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
               {!isLogin && (
                 <>
                   <div className="space-y-2">
@@ -168,6 +190,7 @@ const Auth = () => {
                 {loading ? 'Loading...' : (isLogin ? 'Login' : 'Create Account')}
               </Button>
             </form>
+            )}
           </CardContent>
         </Card>
 
