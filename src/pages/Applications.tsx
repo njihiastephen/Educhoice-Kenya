@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import Logo from "@/components/shared/Logo";
-import { Search, Filter, Eye, Download } from "lucide-react";
+import { Search, Filter, Eye, Download, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Applications = () => {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filterStatus, setFilterStatus] = useState("all");
   const applications = [
     { 
       id: "1",
@@ -54,6 +59,14 @@ const Applications = () => {
     }
   ];
 
+  const filteredApplications = applications.filter(app => {
+    const matchesSearch = searchQuery === "" || 
+      app.institution.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      app.program.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = filterStatus === "all" || app.status === filterStatus;
+    return matchesSearch && matchesFilter;
+  });
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Accepted": return "default";
@@ -69,7 +82,16 @@ const Applications = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
-          <Logo />
+          <div className="flex items-center gap-4">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => navigate(-1)}
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <Logo />
+          </div>
         </div>
       </header>
 
@@ -86,17 +108,27 @@ const Applications = () => {
             <Input 
               placeholder="Search applications..." 
               className="max-w-sm pl-10"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <Button variant="outline" className="gap-2">
-            <Filter className="h-4 w-4" />
-            Filter
-          </Button>
+          <select 
+            className="px-3 py-2 border rounded-md"
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+          >
+            <option value="all">All Status</option>
+            <option value="Under Review">Under Review</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Interview Scheduled">Interview Scheduled</option>
+            <option value="Pending Documents">Pending Documents</option>
+          </select>
         </div>
 
         {/* Applications Grid */}
         <div className="grid gap-6">
-          {applications.map((app) => (
+          {filteredApplications.map((app) => (
             <Card key={app.id}>
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
@@ -121,7 +153,12 @@ const Applications = () => {
                 </div>
 
                 <div className="flex gap-2">
-                  <Button size="sm" variant="outline" className="gap-2">
+                  <Button 
+                    size="sm" 
+                    variant="outline" 
+                    className="gap-2"
+                    onClick={() => navigate(`/applications/${app.id}`)}
+                  >
                     <Eye className="h-4 w-4" />
                     View Details
                   </Button>

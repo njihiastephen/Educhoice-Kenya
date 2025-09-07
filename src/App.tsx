@@ -14,6 +14,12 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Landing from "./pages/Landing";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import ApplicationGuide from "./pages/ApplicationGuide";
+import ConnectStudents from "./pages/ConnectStudents";
+import Deadlines from "./pages/Deadlines";
+import ApplyProgram from "./pages/ApplyProgram";
+import ApplicationDetails from "./pages/ApplicationDetails";
+import ProfileSettings from "./pages/ProfileSettings";
 
 const queryClient = new QueryClient();
 
@@ -28,8 +34,14 @@ const App = () => (
           <Route path="/student-dashboard" element={<StudentDashboard />} />
           <Route path="/student-grade-input" element={<StudentGradeInput />} />
           <Route path="/applications" element={<Applications />} />
+          <Route path="/applications/:applicationId" element={<ApplicationDetails />} />
           <Route path="/browse-programs" element={<BrowsePrograms />} />
+          <Route path="/apply/:programId" element={<ApplyProgram />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/application-guide" element={<ApplicationGuide />} />
+          <Route path="/connect-students" element={<ConnectStudents />} />
+          <Route path="/deadlines" element={<Deadlines />} />
+          <Route path="/profile-settings" element={<ProfileSettings />} />
           <Route path="/institution-dashboard" element={<InstitutionDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/landing" element={<Landing />} />

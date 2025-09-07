@@ -5,9 +5,11 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Logo from "@/components/shared/Logo";
-import { Search, Filter, MapPin, Clock, DollarSign } from "lucide-react";
+import { Search, Filter, MapPin, Clock, DollarSign, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const BrowsePrograms = () => {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
@@ -115,7 +117,16 @@ const BrowsePrograms = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
-          <Logo />
+          <div className="flex items-center gap-4">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => navigate(-1)}
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <Logo />
+          </div>
         </div>
       </header>
 
@@ -218,8 +229,11 @@ const BrowsePrograms = () => {
                   </div>
                 </div>
                 
-                <div className="flex gap-2">
-                  <Button className="flex-1">
+                 <div className="flex gap-2">
+                  <Button 
+                    className="flex-1"
+                    onClick={() => navigate(`/apply/${program.institution.toLowerCase().replace(/\s+/g, '-')}-${program.program.toLowerCase().replace(/\s+/g, '-')}`)}
+                  >
                     Apply Now
                   </Button>
                   <Button variant="outline">

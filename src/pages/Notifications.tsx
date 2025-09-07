@@ -2,9 +2,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Logo from "@/components/shared/Logo";
-import { Bell, CheckCheck, Trash2, Settings } from "lucide-react";
+import { Bell, CheckCheck, Trash2, Settings, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Notifications = () => {
+  const navigate = useNavigate();
   const notifications = [
     // Empty array to show empty state
   ];
@@ -56,7 +58,16 @@ const Notifications = () => {
     <div className="min-h-screen bg-background">
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
-          <Logo />
+          <div className="flex items-center gap-4">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={() => navigate(-1)}
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <Logo />
+          </div>
         </div>
       </header>
 

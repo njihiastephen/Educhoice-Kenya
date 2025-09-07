@@ -57,9 +57,15 @@ const StudentDashboard = () => {
                   </span>
                 )}
               </Button>
-              <div className="h-8 w-8 bg-primary rounded-full flex items-center justify-center">
-                <span className="text-sm font-medium text-primary-foreground">JS</span>
-              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate('/profile-settings')}
+              >
+                <div className="h-8 w-8 bg-primary rounded-full flex items-center justify-center">
+                  <span className="text-sm font-medium text-primary-foreground">JS</span>
+                </div>
+              </Button>
             </div>
           </div>
         </div>
@@ -143,7 +149,7 @@ const StudentDashboard = () => {
                   </div>
                   <Button 
                     size="sm"
-                    onClick={() => navigate(`/apply/${rec.institution.toLowerCase().replace(/\s+/g, '-')}`)}
+                    onClick={() => navigate(`/apply/${rec.institution.toLowerCase().replace(/\s+/g, '-')}-${rec.program.toLowerCase().replace(/\s+/g, '-')}`)}
                   >
                     Apply
                   </Button>
