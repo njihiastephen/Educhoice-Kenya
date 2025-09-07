@@ -120,22 +120,14 @@ const Welcome = () => {
               parallel programs, compare options, and secure your academic future with confidence.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button 
                 size="lg" 
-                className="text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90"
+                className="text-lg px-8 py-6 h-auto bg-green-600 hover:bg-green-700 text-white"
                 onClick={() => setShowRoleSelection(true)}
               >
+                <span className="mr-2">→</span>
                 Start Application
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="text-lg px-8 py-6 h-auto bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
-                onClick={() => setShowRoleSelection(true)}
-              >
-                <Building2 className="h-5 w-5 mr-2" />
-                Browse Universities
               </Button>
             </div>
           </div>
