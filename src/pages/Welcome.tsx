@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { GraduationCap, Building2, Shield, Users } from "lucide-react";
+import heroBackground from "@/assets/hero-background.jpg";
 
 const Welcome = () => {
   const [showRoleSelection, setShowRoleSelection] = useState(false);
@@ -91,71 +92,91 @@ const Welcome = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
-        <div className="container mx-auto px-4 py-20">
+      {/* Hero Section with Background Image */}
+      <div 
+        className="relative overflow-hidden bg-cover bg-center bg-no-repeat min-h-screen flex items-center"
+        style={{ 
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${heroBackground})` 
+        }}
+      >
+        <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <div className="h-16 w-16 bg-primary rounded-lg flex items-center justify-center">
-                <GraduationCap className="h-9 w-9 text-primary-foreground" />
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold">EduChoice Kenya</h1>
+            {/* Parallel Students Placement System Badge */}
+            <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 mb-8">
+              <GraduationCap className="h-5 w-5 text-white" />
+              <span className="text-white font-medium">Parallel Students Placement System</span>
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-              Your Gateway to Quality Education
+            {/* Main Title */}
+            <h1 className="text-6xl md:text-7xl font-bold text-white mb-4">
+              EduChoice
+            </h1>
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-8">
+              Kenya
             </h2>
             
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Connect with top educational institutions, explore diverse programs, and make informed decisions about your academic future.
+            <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Discover your perfect university match through our intelligent placement system. Access 
+              parallel programs, compare options, and secure your academic future with confidence.
             </p>
             
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-6 h-auto"
-              onClick={() => setShowRoleSelection(true)}
-            >
-              Start Your Journey
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg" 
+                className="text-lg px-8 py-6 h-auto bg-primary hover:bg-primary/90"
+                onClick={() => setShowRoleSelection(true)}
+              >
+                Start Application
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="text-lg px-8 py-6 h-auto bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+                onClick={() => setShowRoleSelection(true)}
+              >
+                <Building2 className="h-5 w-5 mr-2" />
+                Browse Universities
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Features Section */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 bg-background">
         <div className="text-center mb-12">
-          <h3 className="text-2xl font-bold mb-4">Why Choose EduChoice Kenya?</h3>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <h3 className="text-3xl font-bold mb-4">Why Choose EduChoice Kenya?</h3>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             We provide comprehensive tools and resources for students, institutions, and administrators
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <GraduationCap className="h-8 w-8 text-blue-600" />
+          <div className="text-center p-6">
+            <div className="w-20 h-20 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <GraduationCap className="h-10 w-10 text-primary" />
             </div>
-            <h4 className="text-lg font-semibold mb-2">For Students</h4>
+            <h4 className="text-xl font-semibold mb-4">For Students</h4>
             <p className="text-muted-foreground">
               Discover programs, track applications, and connect with institutions that match your goals.
             </p>
           </div>
 
-          <div className="text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Building2 className="h-8 w-8 text-green-600" />
+          <div className="text-center p-6">
+            <div className="w-20 h-20 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <Building2 className="h-10 w-10 text-primary" />
             </div>
-            <h4 className="text-lg font-semibold mb-2">For Institutions</h4>
+            <h4 className="text-xl font-semibold mb-4">For Institutions</h4>
             <p className="text-muted-foreground">
               Manage programs, track applications, and connect with qualified prospective students.
             </p>
           </div>
 
-          <div className="text-center">
-            <div className="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-              <Users className="h-8 w-8 text-purple-600" />
+          <div className="text-center p-6">
+            <div className="w-20 h-20 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <Users className="h-10 w-10 text-primary" />
             </div>
-            <h4 className="text-lg font-semibold mb-2">Comprehensive Support</h4>
+            <h4 className="text-xl font-semibold mb-4">Comprehensive Support</h4>
             <p className="text-muted-foreground">
               Get guidance, resources, and support throughout your educational journey.
             </p>

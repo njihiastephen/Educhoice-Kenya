@@ -1,9 +1,22 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, GraduationCap, Users, TrendingUp, Calendar, Bell, Search, Star } from "lucide-react";
+import Logo from "@/components/shared/Logo";
 
 const StudentDashboard = () => {
+  const navigate = useNavigate();
+  const [notifications, setNotifications] = useState<any[]>([]);
+
+  useEffect(() => {
+    // Check if user has entered grades
+    const studentGrades = localStorage.getItem('studentGrades');
+    if (!studentGrades) {
+      navigate('/student-grade-input');
+    }
+  }, [navigate]);
   const stats = [
     { title: "Applications", value: "5", icon: BookOpen, color: "bg-blue-500" },
     { title: "Accepted", value: "2", icon: GraduationCap, color: "bg-green-500" },
@@ -29,15 +42,20 @@ const StudentDashboard = () => {
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
-                <GraduationCap className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <h1 className="text-2xl font-bold">EduChoice Kenya - Student Portal</h1>
-            </div>
+            <Logo />
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="icon">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={() => navigate('/notifications')}
+                className="relative"
+              >
                 <Bell className="h-5 w-5" />
+                {notifications.length > 0 && (
+                  <span className="absolute -top-1 -right-1 h-4 w-4 bg-destructive text-white text-xs rounded-full flex items-center justify-center">
+                    {notifications.length}
+                  </span>
+                )}
               </Button>
               <div className="h-8 w-8 bg-primary rounded-full flex items-center justify-center">
                 <span className="text-sm font-medium text-primary-foreground">JS</span>
@@ -96,7 +114,11 @@ const StudentDashboard = () => {
                   </Badge>
                 </div>
               ))}
-              <Button className="w-full" variant="outline">
+              <Button 
+                className="w-full" 
+                variant="outline"
+                onClick={() => navigate('/applications')}
+              >
                 View All Applications
               </Button>
             </CardContent>
@@ -119,10 +141,19 @@ const StudentDashboard = () => {
                     <p className="text-sm text-muted-foreground">{rec.program}</p>
                     <p className="text-sm text-green-600 font-medium">{rec.fee}</p>
                   </div>
-                  <Button size="sm">Apply</Button>
+                  <Button 
+                    size="sm"
+                    onClick={() => navigate(`/apply/${rec.institution.toLowerCase().replace(/\s+/g, '-')}`)}
+                  >
+                    Apply
+                  </Button>
                 </div>
               ))}
-              <Button className="w-full" variant="outline">
+              <Button 
+                className="w-full" 
+                variant="outline"
+                onClick={() => navigate('/browse-programs')}
+              >
                 <Search className="h-4 w-4 mr-2" />
                 Browse All Programs
               </Button>
@@ -139,19 +170,34 @@ const StudentDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <Button className="h-auto p-4 flex flex-col items-center gap-2">
+                <Button 
+                  className="h-auto p-4 flex flex-col items-center gap-2"
+                  onClick={() => navigate('/browse-programs')}
+                >
                   <Search className="h-6 w-6" />
                   <span>Find Programs</span>
                 </Button>
-                <Button variant="outline" className="h-auto p-4 flex flex-col items-center gap-2">
+                <Button 
+                  variant="outline" 
+                  className="h-auto p-4 flex flex-col items-center gap-2"
+                  onClick={() => navigate('/application-guide')}
+                >
                   <BookOpen className="h-6 w-6" />
                   <span>Application Guide</span>
                 </Button>
-                <Button variant="outline" className="h-auto p-4 flex flex-col items-center gap-2">
+                <Button 
+                  variant="outline" 
+                  className="h-auto p-4 flex flex-col items-center gap-2"
+                  onClick={() => navigate('/connect-students')}
+                >
                   <Users className="h-6 w-6" />
                   <span>Connect with Students</span>
                 </Button>
-                <Button variant="outline" className="h-auto p-4 flex flex-col items-center gap-2">
+                <Button 
+                  variant="outline" 
+                  className="h-auto p-4 flex flex-col items-center gap-2"
+                  onClick={() => navigate('/deadlines')}
+                >
                   <Calendar className="h-6 w-6" />
                   <span>Deadlines</span>
                 </Button>

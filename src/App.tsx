@@ -5,6 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import StudentDashboard from "./pages/StudentDashboard";
+import StudentGradeInput from "./pages/StudentGradeInput";
+import Applications from "./pages/Applications";
+import BrowsePrograms from "./pages/BrowsePrograms";
+import Notifications from "./pages/Notifications";
 import InstitutionDashboard from "./pages/InstitutionDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 import Landing from "./pages/Landing";
@@ -22,6 +26,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/student-dashboard" element={<StudentDashboard />} />
+          <Route path="/student-grade-input" element={<StudentGradeInput />} />
+          <Route path="/applications" element={<Applications />} />
+          <Route path="/browse-programs" element={<BrowsePrograms />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="/institution-dashboard" element={<InstitutionDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/landing" element={<Landing />} />
