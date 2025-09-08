@@ -96,26 +96,26 @@ const Welcome = () => {
       <div 
         className="relative overflow-hidden bg-cover bg-center bg-no-repeat min-h-screen flex items-center"
         style={{ 
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${heroBackground})` 
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(${heroBackground})` 
         }}
       >
         <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             {/* Parallel Students Placement System Badge */}
-            <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 mb-8">
-              <GraduationCap className="h-5 w-5 text-white" />
-              <span className="text-white font-medium">Parallel Students Placement System</span>
+            <div className="inline-flex items-center gap-2 bg-green-100 rounded-full px-6 py-2 mb-8">
+              <GraduationCap className="h-5 w-5 text-green-700" />
+              <span className="text-green-700 font-medium">Parallel Students Placement System</span>
             </div>
             
             {/* Main Title */}
-            <h1 className="text-6xl md:text-7xl font-bold text-white mb-4">
+            <h1 className="text-6xl md:text-7xl font-bold text-gray-800 mb-4">
               EduChoice
             </h1>
-            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-green-600 mb-8">
               Kenya
             </h2>
             
-            <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
               Discover your perfect university match through our intelligent placement system. Access 
               parallel programs, compare options, and secure your academic future with confidence.
             </p>
