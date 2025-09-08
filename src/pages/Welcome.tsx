@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, Building2, Shield, Users } from "lucide-react";
+import { GraduationCap, Building2, Shield, ArrowRight } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
 
 const Welcome = () => {
@@ -91,46 +91,46 @@ const Welcome = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section with Background Image */}
+    <div className="min-h-screen">
+      {/* Hero Section */}
       <div 
-        className="relative overflow-hidden bg-cover bg-center bg-no-repeat min-h-screen flex items-center"
+        className="relative min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${heroBackground})` 
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(${heroBackground})` 
         }}
       >
-        <div className="container mx-auto px-4 py-20 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Parallel Students Placement System Badge */}
-            <div className="inline-flex items-center gap-2 bg-green-100 rounded-full px-6 py-2 mb-12">
-              <GraduationCap className="h-5 w-5 text-green-700" />
-              <span className="text-green-700 font-medium">Parallel Students Placement System</span>
-            </div>
-            
-            {/* Main Title */}
-            <h1 className="text-6xl md:text-8xl font-bold text-gray-800 mb-4">
-              EduChoice
-            </h1>
-            <h2 className="text-4xl md:text-6xl font-bold text-green-600 mb-12">
-              Kenya
-            </h2>
-            
-            <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-4xl mx-auto leading-relaxed">
-              Discover your perfect university match through our intelligent placement system. Access 
-              parallel programs, compare options, and secure your academic future with confidence.
-            </p>
-            
-            <div className="flex justify-center">
-              <Button 
-                size="lg" 
-                className="text-xl px-12 py-8 h-auto bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold"
-                onClick={() => setShowRoleSelection(true)}
-              >
-                <span className="mr-3 text-2xl">→</span>
-                Start Application
-              </Button>
-            </div>
+        {/* Top Badge */}
+        <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
+          <div className="inline-flex items-center gap-2 bg-green-100 text-green-800 rounded-full px-6 py-3 text-sm font-medium">
+            Parallel Students Placement System
           </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="text-center max-w-5xl mx-auto px-4">
+          {/* Main Title */}
+          <h1 className="text-7xl md:text-8xl font-bold text-gray-900 mb-2">
+            EduChoice
+          </h1>
+          <h2 className="text-5xl md:text-6xl font-bold text-green-600 mb-12">
+            Kenya
+          </h2>
+          
+          {/* Tagline */}
+          <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-4xl mx-auto leading-relaxed font-medium">
+            Discover your perfect university match through our intelligent placement system. Access 
+            parallel programs, compare options, and secure your academic future with confidence.
+          </p>
+          
+          {/* CTA Button */}
+          <Button 
+            size="lg" 
+            className="text-xl px-10 py-8 h-auto bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            onClick={() => setShowRoleSelection(true)}
+          >
+            Start Application
+            <ArrowRight className="ml-3 h-6 w-6" />
+          </Button>
         </div>
       </div>
     </div>
