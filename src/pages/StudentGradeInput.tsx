@@ -32,10 +32,8 @@ const StudentGradeInput = () => {
   const availableSubjects = [
     "Mathematics", "English", "Kiswahili", "Biology", "Chemistry", "Physics",
     "Geography", "History", "Christian Religious Education", "Islamic Religious Education",
-    "Hindu Religious Education", "Computer Studies", "Business Studies", "Accounting",
-    "Economics", "German", "French", "Arabic", "Music", "Art & Design", "Agriculture",
-    "Home Science", "Woodwork", "Metalwork", "Building Construction", "Power Mechanics",
-    "Electricity", "Drawing & Design", "Aviation Technology", "Nursing"
+    "Hindu Religious Education", "Computer Studies", "Business Studies", "Agriculture",
+    "Home Science"
   ];
 
   const grades = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "E"];
